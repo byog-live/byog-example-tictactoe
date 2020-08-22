@@ -24,7 +24,7 @@ function draw() {
   ctx.fillStyle = '#333';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  ctx.fillStyle = state.game.current == userId ? '#aaa' : '#444';
+  ctx.fillStyle = state.game.current == game.userId ? '#aaa' : '#444';
   for (let offset = 0; offset < canvas.height; offset += dashSize * 3) {
     ctx.fillRect(canvas.width / 3 - dashSize / 2, offset, dashSize, dashSize);
     ctx.fillRect((canvas.width / 3) * 2 - dashSize / 2, offset, dashSize, dashSize);
