@@ -38,6 +38,16 @@ export function draw(game) {
 const playButton = document.getElementById('playButton');
 
 export function setup(game) {
+  game.handlePush = ({event, payload}) => {
+    switch (event) {
+      case 'join':
+        break;
+      default:
+        state[event] = payload;
+        draw();
+    }
+  }
+
   function place(event) {
     const hOffset = Math.floor((event.offsetX * 3) / canvas.width);
     const vOffset = Math.floor((event.offsetY * 3) / canvas.height);
