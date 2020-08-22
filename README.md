@@ -1,1 +1,1 @@
-# byog-example-ticktactoe
+# BYOG example TicTacToe
