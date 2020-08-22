@@ -44,7 +44,7 @@ export function setup(game) {
         break;
       default:
         state[event] = payload;
-        draw();
+        draw(game);
     }
   }
 
