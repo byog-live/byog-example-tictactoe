@@ -61,7 +61,7 @@ draw();
 const playButton = document.getElementById('playButton');
 
 playButton.addEventListener('click', () => {
-  gameChannel.push('trigger', {event: 'ready'});
+  game.trigger('ready', null);
   playButton.parentElement.removeChild(playButton);
 
   canvas.addEventListener('click', place);
