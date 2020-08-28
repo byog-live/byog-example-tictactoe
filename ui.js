@@ -5,6 +5,33 @@ const ctx = canvas.getContext('2d');
 const dashSize = 4;
 const sectionSideLength = canvas.width / 3;
 
+export function setup(game) {
+  game.handlePush = ({event, payload}) => {
+    switch (event) {
+      case 'join':
+        break;
+      default:
+        state[event] = payload;
+        draw(game);
+    }
+  }
+
+  function place(event) {
+    const hOffset = Math.floor((event.offsetX * 3) / canvas.width);
+    const vOffset = Math.floor((event.offsetY * 3) / canvas.height);
+    game.trigger('place', `${hOffset}-${vOffset}`);
+  }
+
+  const playButton = document.getElementById('playButton');
+
+  playButton.addEventListener('click', () => {
+    game.trigger('ready', null);
+    playButton.parentElement.removeChild(playButton);
+
+    canvas.addEventListener('click', place);
+  });
+}
+
 export function draw(game) {
   ctx.fillStyle = '#333';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -33,31 +60,4 @@ export function draw(game) {
       }
     }
   }
-}
-
-const playButton = document.getElementById('playButton');
-
-export function setup(game) {
-  game.handlePush = ({event, payload}) => {
-    switch (event) {
-      case 'join':
-        break;
-      default:
-        state[event] = payload;
-        draw(game);
-    }
-  }
-
-  function place(event) {
-    const hOffset = Math.floor((event.offsetX * 3) / canvas.width);
-    const vOffset = Math.floor((event.offsetY * 3) / canvas.height);
-    game.trigger('place', `${hOffset}-${vOffset}`);
-  }
-
-  playButton.addEventListener('click', () => {
-    game.trigger('ready', null);
-    playButton.parentElement.removeChild(playButton);
-
-    canvas.addEventListener('click', place);
-  });
 }
